@@ -25,6 +25,8 @@ use Modules\Invoice\App\Models\Invoice;
 use Illuminate\Support\Facades\View;
 use Modules\Banks\App\Models\Banks;
 use App\Models\ApplicationRemarks;
+use App\Models\WebinarOrder;
+use App\Models\WebinarRegistration;
 
 class CustomerController extends Controller
 {
@@ -34,6 +36,9 @@ class CustomerController extends Controller
 
     public function usersDetails($userId){
         $customerInfo = UserRegistration::where(['id'=>$userId,'isDelete'=>0,'isUser'=>2])->first();
+        if(empty($customerInfo)){
+            return redirect()->route('manage.selfapply.users');
+        }
         $membershipOrder = MembershipOrder::where(['userid'=>$userId,'isActive'=>1,'isDelete'=>0])->orderBy('id','desc')->get();
         $loanApp = LoanApplications::where('userid',$userId)->orderByDesc('id')->get();
         $agentList = Administrations::select('id','role','fullname','mobile')->where('isDelete',0)->where('isActive',1)->whereIn('role',[5])->get();
@@ -134,9 +139,21 @@ class CustomerController extends Controller
 
     public function getInvoiceDetails($cardId, $userId){
         try{
+            $invoice = Invoice::where([
+                'cardid' => $cardId,
+                'userid' => $userId
+            ])->orderByDesc('id')->first();
+
             $invoiceDetails = [];
-            $invoiceDetails['userDetails'] = UserRegistration::where('id',$userId)->first();
-            $invoiceDetails['cardDetails'] = MembershipOrder::where('id',$cardId)->first();
+            if ($invoice && $invoice->inv_prefix == 'Webinar_') {
+
+                $invoiceDetails['userDetails'] = WebinarRegistration::where('id', $userId)->first();
+                $invoiceDetails['cardDetails'] = WebinarOrder::where('id', $cardId)->first();
+            } else {
+                $invoiceDetails['userDetails'] = UserRegistration::where('id', $userId)->first();
+                $invoiceDetails['cardDetails'] = MembershipOrder::where('id', $cardId)->first();
+            }
+
             $invoiceDetails['invoices'] = Invoice::where(['cardid'=>$cardId,'userid'=>$userId])->orderByDesc('id')->first();
             return $invoiceDetails;
         } catch(\Exception $e){

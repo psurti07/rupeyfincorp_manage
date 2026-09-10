@@ -130,16 +130,16 @@ class SMSController extends Controller
     public function getSenderId($accType){
         $senderId = '';
         if($accType == 1){
-            $username = env('SMS_OBB_USERNAME');
-            $password = env('SMS_OBB_PASSWORD');
+            $username = config('constant.SMS_OBB_USERNAME');
+            $password = config('constant.SMS_OBB_PASSWORD');
             $senderId = DB::table('info_pages')->where('slug','sa-senderid')->select('content')->first()->content;
         } else if($accType == 2){
-            $username = env('SMS_OBB_LA_USERNAME');
-            $password = env('SMS_OBB_LA_PASSWORD');
+            $username = config('constant.SMS_OBB_LA_USERNAME');
+            $password = config('constant.SMS_OBB_LA_PASSWORD');
             $senderId = DB::table('info_pages')->where('slug','la-senderid')->select('content')->first()->content;
         } else {
-            $username = env('SMS_OBB_USERNAME');
-            $password = env('SMS_OBB_PASSWORD');
+            $username = config('constant.SMS_OBB_USERNAME');
+            $password = config('constant.SMS_OBB_PASSWORD');
             $senderId = DB::table('info_pages')->where('slug','sa-senderid')->select('content')->first()->content;
         }
         

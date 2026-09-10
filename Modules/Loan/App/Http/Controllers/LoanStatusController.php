@@ -141,7 +141,7 @@ class LoanStatusController extends Controller
     /* starts new developing */
     public function getTitle(Request $request){
         $title = DB::table('loanstatus_remarks')->where('id',$request->title)->first()->remarks;
-        $title = str_ireplace('{var_consultant_number}', '<strong>+91 '.trim(chunk_split(($request->staff ?? '9429214352'),5,' ')).'</strong>', $title);
+        $title = str_ireplace('{var_consultant_number}', '<strong>+91 '.trim(chunk_split(($request->staff ?? config('constant.COMPANY_MOBILE')),5,' ')).'</strong>', $title);
         if($title){
             return response()->json(['type'=>'SUCCESS','message'=>htmlspecialchars($title)]);
         } else {

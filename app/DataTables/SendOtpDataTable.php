@@ -43,7 +43,7 @@ class SendOtpDataTable extends DataTable
         $query = $model->newQuery()->orderByDesc('id');
 
         if ($product === null) {
-            $query->whereIn('acc_type', [1, 2]);
+            $query->whereIn('acc_type', [1, 2, 9]);
         } else {
             $query->where('acc_type', $product);
         }

@@ -11,30 +11,28 @@
         <div class="row">
             <div class="col-xl-12 p-0">
                 <div class="login-card login-dark">
-                    <div>
-                        <div class="login-main">
-                            <div>
-                                <a class="logo text-center" href="javascript:;">
-                                    <img class="img-fluid for-light" src="{{asset('assets/images/logo/logo.png')}}" alt="{{ env('APP_NAME') }}" width="150"/>
-                                </a>
-                            </div>
-                            <form class="theme-form auth-form" action="{{ route('authenticate') }}" method="post">
-                                <h5>Sign in to account</h5>
-                                <div class="form-group">
-                                    <label class="col-form-label">Email Address</label>
-                                    <input class="form-control" type="email" placeholder="Enter Email" name="emailid" id="emailid" value="{{ old('emailid') }}"/>
-                                    @component('components.ajax-error',['field'=>'emailid'])@endcomponent
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Password</label>
-                                    <input class="form-control" type="password" name="password" placeholder="Enter Password" id="password"/>
-                                    @component('components.ajax-error',['field'=>'password'])@endcomponent
-                                </div>
-                                <div class="form-group mt-3">
-                                    <button class="btn btn-primary btn-block submit-btn" id="submit-btn" type="submit">Sign in</button>
-                                </div>
-                            </form>
+                    <div class="login-main">
+                        <div>
+                            <a class="logo text-start" href="javascript:;">
+                                <img class="img-fluid for-light" src="{{asset('assets/images/logo/logo.png')}}" alt="{{ config('constant.APP_NAME') }}" width="220"/>
+                            </a>
                         </div>
+                        <form class="theme-form auth-form" action="{{ route('authenticate') }}" method="post">
+                            <h5>Sign in to account</h5>
+                            <div class="form-group">
+                                <label class="col-form-label">Email Address</label>
+                                <input class="form-control" type="email" placeholder="Enter Email" name="emailid" id="emailid" value="{{ old('emailid') }}"/>
+                                @component('components.ajax-error',['field'=>'emailid'])@endcomponent
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Password</label>
+                                <input class="form-control" type="password" name="password" placeholder="Enter Password" id="password"/>
+                                @component('components.ajax-error',['field'=>'password'])@endcomponent
+                            </div>
+                            <div class="form-group mt-3">
+                                <button class="btn btn-primary btn-block submit-btn" id="submit-btn" type="submit">Sign in</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,8 @@ use App\Models\PhonePeEntry;
 use App\Models\VeegahPay;
 use App\Models\SabpaisaEntry;
 use App\Models\UserRegistration;
+use App\Models\WebinarOrder;
+use App\Models\WebinarRegistration;
 use App\Models\ZaakpayEntry;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -476,7 +478,7 @@ use Modules\Auth\App\Models\Administrations;
     if(!function_exists('projectsOptions')){
         function projectsOptions($project){
             $modules = array(
-                'RupeyFincorp' => 'RupeyFincorp'
+                'Rupeyfincorp' => 'Rupeyfincorp'
             );
             $option = '';
             foreach($modules as $key=>$value){
@@ -633,21 +635,50 @@ use Modules\Auth\App\Models\Administrations;
     }
     
     
-    if (!function_exists('getPostalDetailsByPincode')) {
-        function getPostalDetailsByPincode($pincode) {
-            $api_url = "https://api.postalpincode.in/pincode/" . $pincode;
+    // if (!function_exists('getPostalDetailsByPincode')) {
+    //     function getPostalDetailsByPincode($pincode) {
+    //         $api_url = "https://api.postalpincode.in/pincode/" . $pincode;
            
-            $response = file_get_contents($api_url);
-            $data = json_decode($response, true);
+    //         $response = file_get_contents($api_url);
+    //         $data = json_decode($response, true);
             
-            if ($data[0]['Status'] == "Success") {
+    //         if ($data[0]['Status'] == "Success") {
+    //             return [
+    //                 'city' => $data[0]['PostOffice'][0]['District'],
+    //                 'state' => $data[0]['PostOffice'][0]['State']
+    //             ];
+    //         } else {
+    //             return ['error' => 'Invalid Pincode'];
+    //         }
+    //     }
+    // }
+
+     if (!function_exists('getPostalDetailsByPincode')) {
+        function getPostalDetailsByPincode($pincode) {
+            $curl = curl_init(); 
+            curl_setopt_array($curl, [ 
+                CURLOPT_URL => 'https://geoloc.in/api/pincode',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => json_encode(['pincode' => $pincode]),
+                CURLOPT_HTTPHEADER => [
+                    'Content-Type: application/json',
+                    'Authorization: Bearer '.config('constant.GEOLOC_KEY')
+                ],
+            ]);
+            $response = curl_exec($curl);
+            curl_close($curl);
+        
+            $data = json_decode($response);
+            
+            if ($data->status == "success") {
                 return [
-                    'city' => $data[0]['PostOffice'][0]['District'],
-                    'state' => $data[0]['PostOffice'][0]['State']
+                    'city' => $data->data[0]->cityname,
+                    'state' => $data->data[0]->statename
                 ];
             } else {
                 return ['error' => 'Invalid Pincode'];
-            }
+            } 
         }
     }
     
@@ -686,6 +717,93 @@ use Modules\Auth\App\Models\Administrations;
             return ['customers'=>$cust, 'leads'=>$lead, 'amount' => $amount->totalAmt, 'openAccounts' => $openAc];
         }
     }
+
+    if (!function_exists('webinardashboardData')) {
+    function webinardashboardData($type)
+    {
+        if ($type == 4) {
+            $cust = WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                    ->whereDate('webinar_order.rec_date', 'like', date('Y-m-d') . '%')
+                    ->where('webinar_order.isDelete', 0)
+                    ->where('webinar_order.isUser', '!=', 1)
+                    ->where('we.program_type', 0)
+                    ->where('we.isDelete', 0)
+                    ->count();
+
+            $lead = WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                    ->whereDate('webinar_order.rec_date', 'like', date('Y-m-d') . '%')
+                    ->where('webinar_order.isDelete', 0)
+                    ->where('webinar_order.isUser', '!=', 2)
+                    ->where('we.program_type', 0)
+                    ->where('we.isDelete', 0)
+                    ->count();
+
+            $amount = DB::table('webinar_order as mo')
+                        ->join('user_webinar_registration as ur', 'ur.id', '=', 'mo.userid')
+                        ->join('webinar_event as we', 'we.id', '=', 'mo.webinar_id')
+                        ->where('mo.rec_date', 'like', date('Y-m-d') . '%')
+                        ->where([
+                            'ur.isActive' => 1,
+                            'ur.isDelete' => 0,
+                            'we.program_type' => 0,
+                            'we.isDelete' => 0,
+                        ])
+                        ->selectRaw('SUM(mo.amount) as totalAmt')
+                        ->first();
+
+            $days = (($type == 4 || $type == 5) ? 7 : (($type == 2) ? 10 : 7));
+    
+            $openAc = WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                        ->whereRaw('DATE(webinar_order.rec_date) >= ?', [Carbon::now()->subDays($days)->format('Y-m-d')])
+                        ->where('webinar_order.isDelete', 0)
+                        ->where('webinar_order.isUser', '=', 2)
+                        ->where('we.program_type', 0)
+                        ->where('we.isDelete', 0)
+                        ->count();
+        } else {
+            $cust = WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                    ->whereDate('webinar_order.rec_date', 'like', date('Y-m-d') . '%')
+                    ->where('webinar_order.isDelete', 0)
+                    ->where('webinar_order.isUser', '!=', 1)
+                    ->where('we.program_type', 1)
+                    ->where('we.isDelete', 0)
+                    ->count();
+
+            $lead =WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                    ->whereDate('webinar_order.rec_date', 'like', date('Y-m-d') . '%')
+                    ->where('webinar_order.isDelete', 0)
+                    ->where('webinar_order.isUser', '!=', 2)
+                    ->where('we.program_type', 1)
+                    ->where('we.isDelete', 0)
+                    ->count();
+
+            $amount = DB::table('webinar_order as mo')
+                        ->join('user_webinar_registration as ur', 'ur.id', '=', 'mo.userid')
+                        ->join('webinar_event as we', 'we.id', '=', 'mo.webinar_id')
+                        ->where('mo.rec_date', 'like', date('Y-m-d') . '%')
+                        ->where([
+                            'ur.isActive' => 1,
+                            'ur.isDelete' => 0,
+                            'we.program_type' => 1,
+                            'we.isDelete' => 0,
+                        ])
+                        ->selectRaw('SUM(mo.amount) as totalAmt')
+                        ->first();
+
+            $days = (($type == 4 || $type == 5) ? 7 : (($type == 2) ? 10 : 7));
+    
+            $openAc = WebinarOrder::join('webinar_event as we', 'we.id', '=', 'webinar_order.webinar_id')
+                        ->whereRaw('DATE(webinar_order.rec_date) >= ?', [Carbon::now()->subDays($days)->format('Y-m-d')])
+                        ->where('webinar_order.isDelete', 0)
+                        ->where('webinar_order.isUser', '=', 2)
+                        ->where('we.program_type', 1)
+                        ->where('we.isDelete', 0)
+                        ->count();
+        }
+
+        return ['customers' => $cust, 'leads' => $lead, 'amount' => $amount->totalAmt, 'openAccounts' => $openAc];
+    }
+}
 
     if(!function_exists('processStepsData')){
         function processStepsData($type, $fromDate, $toDate){
@@ -936,8 +1054,8 @@ use Modules\Auth\App\Models\Administrations;
 
     if(!function_exists('sendBrevoHtmlMail2')){
         function sendBrevoHtmlMail2($maildata, $subject = '', $message = '', $sendmail = '', $attachments = []){
-            $data['sender']['name'] = env('APP_NAME');
-            $data["sender"]["email"] = 'info@rupeyfincorp.com';
+            $data['sender']['name'] = config('constant.APP_NAME');
+            $data["sender"]["email"] = config('constant.COMPANY_MOBILE');
     
             $user_res["name"] = $maildata["fullname"];
             $user_res["email"] = $maildata["email"];
@@ -977,7 +1095,7 @@ use Modules\Auth\App\Models\Administrations;
                     CURLOPT_HTTPHEADER => [
                         "Accept: application/json",
                         "Content-Type: application/json",
-                        "api-key: ".env('BREVO_API_KEY')
+                        "api-key: ".config('constant.BREVO_API_KEY')
                     ],
                 )
             );
@@ -992,8 +1110,8 @@ use Modules\Auth\App\Models\Administrations;
 
     if(!function_exists('sendBrevoHtmlMail')){
         function sendBrevoHtmlMail($maildata, $subject = '', $message = '', $sendmail = '', $attachmentPath = ''){
-            $data['sender']['name'] = env('APP_NAME');
-            $data["sender"]["email"] = 'info@rupeyfincorp.com';
+            $data['sender']['name'] = config('constant.APP_NAME');
+            $data["sender"]["email"] = config('constant.COMPANY_MOBILE');
     
             $user_res["name"] = $maildata["fullname"];
             $user_res["email"] = $maildata["email"];
@@ -1031,7 +1149,7 @@ use Modules\Auth\App\Models\Administrations;
                     CURLOPT_HTTPHEADER => [
                         "Accept: application/json",
                         "Content-Type: application/json",
-                        "api-key: ".env('BREVO_API_KEY')
+                        "api-key: ".config('constant.BREVO_API_KEY')
                     ],
                 )
             );

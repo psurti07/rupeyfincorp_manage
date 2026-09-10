@@ -143,7 +143,7 @@ class ReportsController extends Controller
         if ($request->ajax()) {
             $fromDate = $request->input('fromDate');
             $toDate = $request->input('toDate');
-            
+
             $invData = DB::table('invoices')->where('isDelete', 0);
             if (!empty($fromDate) && !empty($toDate)) {
                 $invData->whereRaw('DATE(inv_date)  BETWEEN  ? AND ?', [$fromDate, $toDate]);
@@ -155,45 +155,83 @@ class ReportsController extends Controller
                     return date('d-m-Y', strtotime($row->rec_date));
                 })
                 ->addColumn('invNo', function ($row) {
-                    return $row->inv_prefix.$row->inv_number;
+                    return $row->inv_prefix . $row->inv_number;
                 })
                 ->addColumn('plan', function ($row) {
-                    $userRes = getUserData($row->userid,'user_registrations');
-                    if($userRes){
-                        return (($userRes->acc_type == 1) ? 'Self Apply' : 'Loan Agent');
+                    if ($row->inv_prefix == 'Webinar_') {
+                        return 'Webinar';
+                    } elseif ($row->inv_prefix == 'workshop') {
+                        return 'Workshop';
+                    } else {
+                        $userRes = getUserData($row->userid, 'user_registrations');
+                        if ($userRes) {
+                            return (($userRes->acc_type == 1) ? 'Self Apply' : (($userRes->acc_type == 2) ? 'Loan Agent' : 'Loan Assistant'));
+                        }
+                        return '-';
                     }
-                    return '-';
                 })
                 ->addColumn('fullname', function ($row) {
-                    $userRes = getUserData($row->userid,'user_registrations');
-                    if ($userRes) {
-                        $name = $userRes->first_name . ' ' . $userRes->last_name;
-                        $tag = (($row->is_refund == 1) ? ' <span class="badge badge-light-danger">Refunded</span>' : '');
-                        return $name . $tag
-                        ;
+                    if ($row->inv_prefix == 'Webinar_' || $row->inv_prefix == 'workshop' ) {
+                        $userRes = getWebinarUserData($row->userid);
+                        if ($userRes) {
+                            $name = $userRes->first_name . ' ' . $userRes->last_name;
+                            return $name;
+                        }
+                        return '-';
+                    } else {
+                        $userRes = getUserData($row->userid, 'user_registrations');
+                        if ($userRes) {
+                            $name = $userRes->first_name . ' ' . $userRes->last_name;
+                            $tag = (($row->is_refund == 1) ? ' <span class="badge badge-light-danger">Refunded</span>' : '');
+                            return $name . $tag;
+                        }
+                        return '-';
                     }
-                    return '-';
                 })
                 ->addColumn('mobile', function ($row) {
-                    $userRes = getUserData($row->userid,'user_registrations');
-                    if ($userRes) {
-                        return $userRes->mobile;
+                    if ($row->inv_prefix == 'Webinar_' || $row->inv_prefix == 'workshop') {
+                        $userRes = getWebinarUserData($row->userid);
+                        if ($userRes) {
+                            return $userRes->mobile;
+                        }
+                        return '-';
+                    } else {
+                        $userRes = getUserData($row->userid, 'user_registrations');
+                        if ($userRes) {
+                            return $userRes->mobile;
+                        }
+                        return '-';
                     }
-                    return '-';
                 })
                 ->addColumn('city', function ($row) {
-                    $userRes = getUserData($row->userid,'user_registrations');
-                    if ($userRes) {
-                        return $userRes->city;
+                    if ($row->inv_prefix == 'Webinar_' || $row->inv_prefix == 'workshop') {
+                        $userRes = getWebinarUserData($row->userid);
+                        if ($userRes) {
+                            return $userRes->city;
+                        }
+                        return '-';
+                    } else {
+                        $userRes = getUserData($row->userid, 'user_registrations');
+                        if ($userRes) {
+                            return $userRes->city;
+                        }
+                        return '-';
                     }
-                    return '-';
                 })
                 ->addColumn('state', function ($row) {
-                    $userRes = getUserData($row->userid,'user_registrations');
-                    if ($userRes) {
-                        return $userRes->state;
+                    if ($row->inv_prefix == 'Webinar_' || $row->inv_prefix == 'workshop') {
+                        $userRes = getWebinarUserData($row->userid);
+                        if ($userRes) {
+                            return $userRes->state;
+                        }
+                        return '-';
+                    } else {
+                        $userRes = getUserData($row->userid, 'user_registrations');
+                        if ($userRes) {
+                            return $userRes->state;
+                        }
+                        return '-';
                     }
-                    return '-';
                 })
                 ->addColumn('totalAmount', function ($row) {
                     return $row->inv_grandtotal;
@@ -201,13 +239,13 @@ class ReportsController extends Controller
                 ->addColumn('action', function ($row) {
                     $actionBtn = '<ul class="action">
                                     <li class="info">
-                                        <a class="" target="_blank" title="info" href="' . route('manage.selfapply.customers.invoice', ['userId' => $row->userid,'cardId' => $row->cardid]) . '">
+                                        <a class="" target="_blank" title="info" href="' . route('manage.selfapply.customers.invoice', ['userId' => $row->userid, 'cardId' => $row->cardid]) . '">
                                             <i class="icon-info-alt"></i>
                                         </a>
                                     </li>
                                     &nbsp;&nbsp;&nbsp;
                                     <li class="undo">
-                                        <a class="text-warning" href="javascript:;" title="refund" onclick="openRefundModal('.$row->id.','.$row->inv_number.')">
+                                        <a class="text-warning" href="javascript:;" title="refund" onclick="openRefundModal(' . $row->id . ',' . $row->inv_number . ')">
                                             <i class="icon-share-alt"></i>
                                         </a>
                                     </li>

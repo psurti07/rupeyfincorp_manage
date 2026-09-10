@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="" />
 
-        <title>{{ env('APP_NAME') }}</title>
+        <title>{{ config('constant.APP_NAME') }}</title>
         <link rel="stylesheet" href="{{ asset('assets/css/invoice.css') }}" />
         <style>
             .watermark {
@@ -50,8 +50,8 @@
                             <div class="tm_invoice_right" style="width:70%;margin-left:10px;">
                                 <div class="tm_grid_row tm_col_12">
                                     <div class="tm_f14">
-                                        <b>{{ env('COMPANY_NAME') }}</b><br />
-                                        {{ env('COMPANY_ADDRESS') }}
+                                        <b>{{ config('constant.COMPANY_NAME') }}</b><br />
+                                        {{ config('constant.COMPANY_ADDRESS') }}
                                     </div>
                                 </div>
                             </div>
@@ -69,15 +69,15 @@
                             <div class="tm_invoice_right" style="width:37%;">
                                 <div class="tm_f14">
                                     <p class="tm_mb0">
-                                        <b class="tm_primary_color">CIN No: </b> {{ env('CIN_NO') }}<br />
-                                        <b class="tm_primary_color">GST No: </b> {{ env('GST_NO') }}
+                                        <b class="tm_primary_color">CIN No: </b> {{ config('constant.CIN_NO') }}<br />
+                                        <b class="tm_primary_color">GST No: </b> {{ config('constant.GST_NO') }}
                                     </p>
                                 </div>
                             </div>
                             <div>
                                 <div class="tm_f14">
                                     <p class="tm_mb0">
-                                        <b class="tm_primary_color">Mobile: </b> {{ env('COMPANY_MOBILE') }}<br />
+                                        <b class="tm_primary_color">Mobile: </b> {{ config('constant.COMPANY_MOBILE') }}<br />
                                         <b class="tm_primary_color">Email: </b> {{ env('INFO_EMAIL') }}
                                     </p>
                                 </div>
@@ -121,9 +121,13 @@
                                     <tr>
                                         <td class="tm_width_1 tm_accent_border_20 tm_f14">1</td>
                                         <td class="tm_width_5 tm_accent_border_20 tm_f14">
-                                            <b>{{ (($users->acc_type == 1) ? 'Self Apply' : 'Loan Agent') }}</b><br />
+                                            @if($invoice->inv_prefix != 'Webinar_')
+                                            <b>{{ (($users->acc_type == 1) ? 'Self Apply' : (($users->acc_type == 2) ? 'Loan Agent' : 'Loan Assistant')) }}</b><br />
                                             <span class="tm_f12">Number - {{ $card->card_number }}</span><br />
                                             <span class="tm_f12">Validity - {{ displayDate($card->registration_date)." to ".displayDate($card->expiry_date) }}</span>
+                                            @else
+                                            <b>Webinar</b><br />
+                                            @endif
                                         </td>
                                         <td class="tm_width_1 tm_accent_border_20 tm_f14 tm_text_center">1</td>
                                         <td class="tm_width_2 tm_accent_border_20 tm_text_right tm_f14">{{ formatePriceIndia($invoice->inv_price) }}</td>
@@ -183,7 +187,7 @@
                             </div>
                             <div class="tm_right_footer cust_authorized">
                                 <div class="tm_sign tm_text_center">
-                                    <p class="tm_m0 tm_ternary_color">{{ env('COMPANY_NAME') }}</p>
+                                    <p class="tm_m0 tm_ternary_color">{{ config('constant.COMPANY_NAME') }}</p>
                                     <p class="tm_m0 tm_12 tm_primary_color">Authorized Person</p>
                                 </div>
                             </div>

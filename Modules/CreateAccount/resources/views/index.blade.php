@@ -43,8 +43,8 @@
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="acc_type" id="btnradio1" autocomplete="off" checked="true" value="1">
                                     <label class="btn btn-outline-primary" for="btnradio1">Self Apply</label>
-                                    <input type="radio" class="btn-check" name="acc_type" id="btnradio2" autocomplete="off" value="2">
-                                    <label class="btn btn-outline-primary" for="btnradio2">Loan Agent</label>
+                                    {{-- <input type="radio" class="btn-check" name="acc_type" id="btnradio2" autocomplete="off" value="2">
+                                    <label class="btn btn-outline-primary" for="btnradio2">Loan Agent</label> --}}
                                 </div>
                                 @component('components.ajax-error',['field'=>'acc_type'])@endcomponent
                             </div>
@@ -63,7 +63,7 @@
                             {{-- mobile --}}
                             <div class="form-group col-md-6">
                                 <label for="mobile">Mobile<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile') }}" maxlength="10" minlength="10">
+                                <input type="text" class="form-control numeric-input" name="mobile" id="mobile" value="{{ old('mobile') }}" maxlength="10" minlength="10">
                                 @component('components.ajax-error',['field'=>'mobile'])@endcomponent
                             </div>
                             {{-- email --}}
@@ -198,7 +198,7 @@
                             {{-- Card Amount --}}
                             <div class="form-group col-md-6">
                                 <label for="amount">Card Amount<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="amount" id="amount" value="{{ old('amount') }}">
+                                <input type="text" class="form-control numeric-input" name="amount" id="amount" value="{{ old('amount') }}">
                                 @component('components.ajax-error',['field'=>'amount'])@endcomponent
                             </div>
                             {{-- Card Number --}}
@@ -228,7 +228,7 @@
 
 @push('script-src')
 <script>
-    /*$('#pincode').on('input', function() {
+    $('#pincode').on('input', function() {
         var pincode = $(this).val();
 
         // Only make request if pincode is of 6 digits
@@ -271,7 +271,7 @@
             $('#city').val('');
             $('#state').val('');
         }
-    });*/
+    });
     $(".create-account-form").submit(function(event) {
         var status = document.activeElement.innerHTML;
         event.preventDefault();

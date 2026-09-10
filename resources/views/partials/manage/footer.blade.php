@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 footer-copyright text-center">
-                <p class="mb-0">{{ date('Y') }} &copy; {{ env('COMPANY_NAME')}}All rights reserved.</p>
+                <p class="mb-0">{{ date('Y') }} &copy; {{ config('constant.COMPANY_NAME')}}All rights reserved.</p>
             </div>
         </div>
     </div>

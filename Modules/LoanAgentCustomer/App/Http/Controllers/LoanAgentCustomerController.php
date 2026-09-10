@@ -26,6 +26,9 @@ class LoanAgentCustomerController extends Controller
     public function usersDetails($userId)
     {
         $customerInfo = UserRegistration::where(['id' => $userId, 'isDelete' => 0, 'isUser' => 2, 'acc_type' => 2])->first();
+        if(empty($customerInfo)){
+            return redirect()->route('manage.loanagent.users');
+        }
         $membershipOrder = MembershipOrder::where(['userid' => $userId, 'isActive' => 1, 'isDelete' => 0])->orderBy('id', 'desc')->get();
         $sourceDetails = DB::table('source_entry')->where('user_id', $userId)->orderByDesc('id')->get();
         $loanApp = LoanApplications::where('userid', $userId)->orderByDesc('id')->get();

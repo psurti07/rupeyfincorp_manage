@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="" />
 
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ config('constant.APP_NAME') }}</title>
     <style>
     
         /*--------------------------------------------------------------
@@ -443,7 +443,7 @@
             transition: all 0.3s ease;
         }
         a:hover {
-            color: #0a8b4b;
+            color: #02a6fc;
         }
 
         button {
@@ -508,7 +508,7 @@
         }
 
         a:hover {
-            color: #0a8b4b;
+            color: #02a6fc;
         }
 
         ul {
@@ -858,12 +858,12 @@
 
         .tm_accent_color,
         .tm_accent_color_hover:hover {
-            color: #0a8b4b;
+            color: #02a6fc;
         }
 
         .tm_accent_bg,
         .tm_accent_bg_hover:hover {
-            background-color: #0a8b4b;
+            background-color: #02a6fc;
         }
 
         .tm_accent_bg_10 {
@@ -874,11 +874,11 @@
             background-color: rgba(0, 122, 255, 0.15);
         }
 
-        .tm_green_bg {
-            background-color: #34c759;
+        .tm_#e5faff_bg {
+            background-color: #02a6fc;
         }
 
-        .tm_green_bg_15 {
+        .tm_#e5faff_bg_15 {
             background-color: rgba(52, 199, 89, 0.1);
         }
 
@@ -928,7 +928,7 @@
         }
 
         .tm_accent_border {
-            border-color: #0a8b4b;
+            border-color: #02a6fc;
         }
 
         .tm_accent_border_10 {
@@ -1908,7 +1908,7 @@
             }
             .tm_invoice_btn.tm_color1 {
                 background-color: rgb(242 238 251);
-                color: #0a8b4b;
+                color: #02a6fc;
                 border-radius: 5px 5px 0 0;
             }
             .tm_invoice_btn.tm_color1:hover {
@@ -1916,7 +1916,7 @@
             }
             .tm_invoice_btn.tm_color2 {
                 background-color: rgba(52, 199, 89, 0.1);
-                color: #34c759;
+                color: #02a6fc;
                 border-radius: 0 0 5px 5px;
             }
             .tm_invoice_btn.tm_color2:hover {
@@ -1980,14 +1980,14 @@
             }
             .tm_invoice_btn.tm_color1 {
                 background-color: rgb(242 238 251);
-                color: #0a8b4b;
+                color: #02a6fc;
             }
             .tm_invoice_btn.tm_color1:hover {
                 background-color: rgba(0, 122, 255, 0.2);
             }
             .tm_invoice_btn.tm_color2 {
                 background-color: rgba(52, 199, 89, 0.1);
-                color: #34c759;
+                color: #02a6fc;
             }
             .tm_invoice_btn.tm_color2:hover {
                 background-color: rgba(52, 199, 89, 0.2);
@@ -2338,7 +2338,7 @@
                 -webkit-print-color-adjust: exact;
             }
             .tm_accent_bg {
-                background-color: #0a8b4b;
+                background-color: #02a6fc;
                 -webkit-print-color-adjust: exact;
             }
             .tm_accent_bg_10 {
@@ -2354,7 +2354,7 @@
                 -webkit-print-color-adjust: exact;
             }
             .tm_accent_color {
-                color: #0a8b4b !important;
+                color: #02a6fc !important;
                 -webkit-print-color-adjust: exact;
             }
             .tm_ternary_color {
@@ -2673,13 +2673,13 @@
             <div class="tm_invoice_in">
                 <div class="tm_invoice_head tm_mb20 tm_m0_md">
                     <div class="tm_invoice_left">
-                        <div class="tm_logo logo-width"><img src="data:image/png;base64,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" width="150" alt="Logo" /></div>
+                        <div class="tm_logo logo-width"><img src="data:image/png;base64,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" width="150" alt="Logo" /></div>
                     </div>
                     <div class="tm_invoice_right" style="width:70%;margin-left:10px;">
                         <div class="tm_grid_row tm_col_12">
                             <div class="tm_f14">
-                                <b>{{ env('COMPANY_NAME') }}</b><br />
-                                {{ env('COMPANY_ADDRESS') }}
+                                <b>{{ config('constant.COMPANY_NAME') }}</b><br />
+                                {{ config('constant.COMPANY_ADDRESS') }}
                             </div>
                         </div>
                     </div>
@@ -2696,7 +2696,7 @@
                     <div class="tm_invoice_right" style="width:37%;">
                         <div class="tm_f14">
                             <p class="tm_mb0">
-                                <b class="tm_primary_color">CIN No: </b> {{ env('CIN_NO') }}<br />
+                                <b class="tm_primary_color">CIN No: </b> {{ config('constant.CIN_NO') }}<br />
                                 <b class="tm_primary_color">GST No: </b> {{ env(key: 'GST_NO') }}
                             </p>
                         </div>
@@ -2704,7 +2704,7 @@
                     <div>
                         <div class="tm_f14">
                             <p class="tm_mb0">
-                                <b class="tm_primary_color">Mobile: </b> {{ env('COMPANY_MOBILE') }}<br />
+                                <b class="tm_primary_color">Mobile: </b> {{ config('constant.COMPANY_MOBILE') }}<br />
                                 <b class="tm_primary_color">Email: </b> {{ env('INFO_EMAIL') }}
                             </p>
                         </div>
@@ -2810,7 +2810,7 @@
                     </div>
                     <div class="tm_right_footer cust_authorized">
                         <div class="tm_sign tm_text_center">
-                            <p class="tm_m0 tm_ternary_color">{{ env('COMPANY_NAME') }}</p>
+                            <p class="tm_m0 tm_ternary_color">{{ config('constant.COMPANY_NAME') }}</p>
                             <p class="tm_m0 tm_12 tm_primary_color">Authorized Person</p>
                         </div>
                     </div>

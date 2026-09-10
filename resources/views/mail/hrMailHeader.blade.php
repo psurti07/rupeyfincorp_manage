@@ -6,7 +6,7 @@
         <meta name="x-apple-disable-message-reformatting" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="telephone=no" name="format-detection" />
-        <title>{{ env('APP_NAME') }}</title>
+        <title>{{ config('constant.APP_NAME') }}</title>
         <link href="https://fonts.googleapis.com/css?family=Montserrat:500,800&display=swap&subset=cyrillic-ext" rel="stylesheet" />
         <style type="text/css">
             .rollover div {
@@ -414,7 +414,7 @@
                                                                                             <a target="_blank"
                                                                                                 href="https://rupeyfincorp.com/"
                                                                                                 style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: underline; color: #000f26; font-size: 14px;">
-                                                                                            <img src="https://rupeyfincorp.com/front/images/logo/logo.png"
+                                                                                            <img src="https://rupeyfincorp.com/public/front/images/logo/logo.png"
                                                                                                 alt="rupeyfincorp"
                                                                                                 style="display: block; border: 0; outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic;"
                                                                                                 width="190"
@@ -460,7 +460,7 @@
                                                                     role="presentation"
                                                                     >
                                                                     <tr>
-                                                                        <td align="left" style="padding: 20px; margin: 0; line-height: 2rem;border: 1px solid green;
+                                                                        <td align="left" style="padding: 20px; margin: 0; line-height: 2rem;border: 1px solid #02a6fc;
                                                                             border-radius: 12px;
                                                                             background-color: #E9F2FB;">
                                                                             @yield('content')
@@ -579,17 +579,17 @@
                                                                                                 font-size: 14px;
                                                                                                 line-height: 24px;
                                                                                                 ">
-                                                                                                <strong>{{ env('COMPANY_NAME') }}</strong><br>{{ env('COMPANY_ADDRESS') }}<br>
+                                                                                                <strong>{{ config('constant.COMPANY_NAME') }}</strong><br>{{ config('constant.COMPANY_ADDRESS') }}<br>
                                                                                                 Mobile:
                                                                                                 <a target="_blank"
                                                                                                     style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: none; color: #000f26; font-size: 14px;"
-                                                                                                    href="tel:09429214352">
+                                                                                                    href="tel:{{ config('constant.COMPANY_MOBILE') }}">
                                                                                                 +91-94292-14352
                                                                                                 </a>
                                                                                                 | Email:
-                                                                                                <a href="mailto:info@rupeyfincorp.com"
+                                                                                                <a href="mailto:{{ config('constant.COMPANY_MOBILE') }}"
                                                                                                     style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: none; color: #000f26; font-size: 14px;">
-                                                                                                info@rupeyfincorp.com
+                                                                                                {{ config('constant.COMPANY_MOBILE') }}
                                                                                                 </a>
                                                                                             </p>
                                                                                         </td>
@@ -608,7 +608,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right: 10px;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://twitter.com/rupeyfincorp"
+                                                                                                                href="{{ config('constant.SM_TWITTER') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -636,7 +636,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right: 10px;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://in.pinterest.com/rupeyfincorp/"
+                                                                                                                href="{{ config('constant.SM_PINTEREST') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -668,7 +668,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right:10px">
                                                                                                             <a target="_blank"
-                                                                                                                href="http://www.youtube.com/@rupeyfincorp"
+                                                                                                                href="{{ config('constant.SM_YOUTUBE') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -701,7 +701,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0;padding-right:10px">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://www.facebook.com/@rupeyfincorp.in"
+                                                                                                                href="{{ config('constant.SM_FACEBOOK') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -733,7 +733,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://www.instagram.com/rupeyfincorp/"
+                                                                                                                href="{{ config('constant.SM_INSTAGRAM') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -808,7 +808,7 @@
                                                                                                 font-size: 12px;
                                                                                                 "> 
                                                                                                 {{ date('Y') }} © <strong>
-                                                                                                {{ env('COMPANY_NAME') }}.
+                                                                                                {{ config('constant.COMPANY_NAME') }}.
                                                                                                 </strong>
                                                                                             </p>
                                                                                         </td>

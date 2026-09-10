@@ -62,7 +62,7 @@
                                                                                             <a target="_blank"
                                                                                                 href="https://rupeyfincorp.com/"
                                                                                                 style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: underline; color: #000f26; font-size: 14px;">
-                                                                                            <img src="https://rupeyfincorp.com/front/images/logo/logo.png"
+                                                                                            <img src="https://rupeyfincorp.com/public/front/images/logo/logo.png"
                                                                                                 alt="rupeyfincorp"
                                                                                                 style="display: block; border: 0; outline: 0; text-decoration: none; -ms-interpolation-mode: bicubic;"
                                                                                                 width="190"
@@ -112,7 +112,7 @@
                                                                                         <td align="center"
                                                                                             style="padding: 20px; margin: 0; line-height: 2rem;    background-color: #E9F2FB;border-top-right-radius:12px;border-top-left-radius:12px;">
                                                                                             <p
-                                                                                                style="font-size:2.2rem;color:#1e7a35;font-weight:600">
+                                                                                                style="font-size:2.2rem;color:#02a6fc;font-weight:600">
                                                                                                 Congratulations ! 
                                                                                             </p>
                                                                                         </td>
@@ -158,18 +158,18 @@
                                                             style="padding: 0; margin: 0; padding-top: 10px; padding-bottom: 10px;">
                                                             <table cellpadding="0" cellspacing="0" class="es-left"
                                                                 align="left"
-                                                                style="mso-table-lspace: 0;mso-table-rspace: 0;border-collapse: collapse;border-spacing: 0;float: left;background-color: #E9F2FB;border: 1px solid #0a8b4b;  border-radius: 12px; display: block;">
+                                                                style="mso-table-lspace: 0;mso-table-rspace: 0;border-collapse: collapse;border-spacing: 0;float: left;background-color: #E9F2FB;border: 1px solid #02a6fc;  border-radius: 12px; display: block;">
                                                                 <tbody>
                                                                     <tr>
                                                                         <td class="es-m-p20b" align="left"
                                                                             style="padding: 0; margin: 0; width: 600px;">
-                                                                            <h3 style="text-align:center; color: #1e7a35;">
+                                                                            <h3 style="text-align:center; color: #02a6fc;">
                                                                                 Order Details
                                                                             </h3>
                                                                             <hr>
                                                                             <table cellpadding="0" cellspacing="0"
                                                                                 width="100%" bgcolor="#ffffff"
-                                                                                style="mso-table-lspace: 0;mso-table-rspace: 0;border-collapse: separate;border-spacing: 0; border-radius: 15px;/* border: 1px solid #0a8b4b; */ background-color: transparent;"
+                                                                                style="mso-table-lspace: 0;mso-table-rspace: 0;border-collapse: separate;border-spacing: 0; border-radius: 15px;/* border: 1px solid #02a6fc; */ background-color: transparent;"
                                                                                 role="presentation">
                                                                                 <tbody>
                                                                                     <tr>
@@ -387,15 +387,15 @@
                                                                                                 font-size: 14px;
                                                                                                 line-height: 24px;
                                                                                                 ">
-                                                                                                <strong>{{ env('COMPANY_NAME') }}</strong><br>{{ env('COMPANY_ADDRESS') }}<br>
+                                                                                                <strong>{{ config('constant.COMPANY_NAME') }}</strong><br>{{ config('constant.COMPANY_ADDRESS') }}<br>
                                                                                                 Mobile:
                                                                                                 <a target="_blank"
                                                                                                     style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: none; color: #000f26; font-size: 14px;"
-                                                                                                    href="tel:09429214352">
-                                                                                                {{ str_ireplace(' ','-',env('COMPANY_MOBILE')) }}
+                                                                                                    href="tel:{{ config('constant.COMPANY_MOBILE') }}">
+                                                                                                {{ str_ireplace(' ','-',config('constant.COMPANY_MOBILE')) }}
                                                                                                 </a>
                                                                                                 | Email:
-                                                                                                <a href="mailto:info@rupeyfincorp.com"
+                                                                                                <a href="mailto:{{ config('constant.COMPANY_MOBILE') }}"
                                                                                                     style="-webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; text-decoration: none; color: #000f26; font-size: 14px;">
                                                                                                 {{ env('INFO_EMAIL') }}
                                                                                                 </a>
@@ -416,7 +416,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right: 10px;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://twitter.com/rupeyfincorp"
+                                                                                                                href="{{ config('constant.SM_TWITTER') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -444,7 +444,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right: 10px;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://in.pinterest.com/rupeyfincorp/"
+                                                                                                                href="{{ config('constant.SM_PINTEREST') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -476,7 +476,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0; padding-right:10px">
                                                                                                             <a target="_blank"
-                                                                                                                href="http://www.youtube.com/@rupeyfincorp"
+                                                                                                                href="{{ config('constant.SM_YOUTUBE') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -509,7 +509,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0;padding-right:10px">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://www.facebook.com/@rupeyfincorp.in"
+                                                                                                                href="{{ config('constant.SM_FACEBOOK') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -541,7 +541,7 @@
                                                                                                             valign="top"
                                                                                                             style="padding: 0; margin: 0;">
                                                                                                             <a target="_blank"
-                                                                                                                href="https://www.instagram.com/rupeyfincorp/"
+                                                                                                                href="{{ config('constant.SM_INSTAGRAM') }}"
                                                                                                                 style="
                                                                                                                 -webkit-text-size-adjust: none;
                                                                                                                 -ms-text-size-adjust: none;
@@ -616,7 +616,7 @@
                                                                                                 font-size: 12px;
                                                                                                 "> 
                                                                                                 {{ date('Y') }} © <strong>
-                                                                                                {{ env('COMPANY_NAME') }}
+                                                                                                {{ config('constant.COMPANY_NAME') }}
                                                                                                 </strong>
                                                                                             </p>
                                                                                         </td>

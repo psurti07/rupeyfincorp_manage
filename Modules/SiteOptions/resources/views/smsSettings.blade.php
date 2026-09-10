@@ -75,6 +75,30 @@
                                 </div>
                             </form>
                             
+                            <form method="post" action="{{ route('manage.sms.settings.update') }}" class="webinar-sms-senderid-settings" id="webinar-sms-senderid-settings">
+                                <input type="hidden" name="slug" value="webinar-senderid">
+                                <div class="form-group">
+                                    <label for="webinar-senderid">webinar Sender ID<span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control" id="webinar-senderid" name="webinar-senderid" type="text" value="{{ $options[7]['content'] }}">
+                                        <button class="btn btn-outline-secondary" data-bs-original-text="webinar-senderid-btn" id="webinar-senderid-btn" type="submit">Update</button>
+                                    </div>
+                                    @component('components.ajax-error',['field'=>'webinar-senderid'])@endcomponent
+                                </div>
+                            </form>
+
+                            <form method="post" action="{{ route('manage.sms.settings.update') }}" class="webinar-sms-senderid-otp-settings" id="webinar-sms-senderid-otp-settings">
+                                <input type="hidden" name="slug" value="webinar-senderid-otp">
+                                <div class="form-group">
+                                    <label for="webinar-senderid-otp">webinar Sender ID - OTP<span class="text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control" id="webinar-senderid-otp" name="webinar-senderid-otp" type="text" value="{{ $options[8]['content'] }}">
+                                        <button class="btn btn-outline-secondary" data-bs-original-text="webinar-senderid-otp-btn" id="webinar-senderid-otp-btn" type="submit">Update</button>
+                                    </div>
+                                    @component('components.ajax-error',['field'=>'webinar-senderid-otp'])@endcomponent
+                                </div>
+                            </form>
+                            
                             <form method="post" action="{{ route('manage.sms.settings.update') }}" class="common-sms-senderid-settings" id="common-sms-senderid-settings">
                                 <input type="hidden" name="slug" value="common-senderid">
                                 <div class="form-group">
@@ -98,7 +122,7 @@
 @endpush
 @push('script-tag')
 <script>
-    $(document).on('submit', '#sa-sms-senderid-settings, #sa-sms-senderid-otp-settings, #la-sms-senderid-settings, #la-sms-senderid-otp-settings, #lat-sms-senderid-otp-settings, #lat-sms-senderid-settings, #common-sms-senderid-settings', function (event) {
+    $(document).on('submit', '#sa-sms-senderid-settings, #sa-sms-senderid-otp-settings, #la-sms-senderid-settings, #la-sms-senderid-otp-settings, #lat-sms-senderid-otp-settings, #lat-sms-senderid-settings, #common-sms-senderid-settings, #webinar-sms-senderid-settings, #webinar-sms-senderid-otp-settings', function (event) {
         event.preventDefault();
 
         var form = $(this);

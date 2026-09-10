@@ -52,10 +52,10 @@ class SyncDataController extends Controller
     public function getInvoiceData($fields){
         try{
             switch($fields->product){
-                case 'SELF APPLY':
+                case 'SELFAPPLY':
                     $accType = 1;
                     break;
-                case 'HIRE AGENT':
+                case 'HIREAGENT':
                     $accType = 2;
                     break;
                 default:
@@ -104,9 +104,9 @@ class SyncDataController extends Controller
                         'inv_igst'          => $row->inv_igst,
                         'inv_grandtotal'    => $row->inv_grandtotal,
                         // custom fields
-                        'company_code'      => 'KREBZ1234',
+                        'company_code'      => config('constant.COMPANY_CODE'),
                         'company_local_ip'  => '190.92.174.183',
-                        'product_code'      => (($row->acc_type == 1) ? 'SELF APPLY' : 'HIRE AGENT'),
+                        'product_code'      => (($row->acc_type == 1) ? config('constant.PRODUCT_CODE_SELFAPPLY') : config('constant.PRODUCT_CODE_LOANAGENT')),
                     ];
                 });
             

@@ -20,24 +20,8 @@
                             <label>Sender Id's</label>
                             <div class="form-check-size rtl-input">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input me-2" id="inlineRadio1" type="radio" name="senderid" value="KRDTAP" checked="">
-                                    <label class="form-check-label" for="inlineRadio1">KRDTAP</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input me-2" id="inlineRadio2" type="radio" name="senderid" value="KREDTA">
-                                    <label class="form-check-label" for="inlineRadio2">KREDTA</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input me-2" id="inlineRadio3" type="radio" name="senderid" value="KDITAP">
-                                    <label class="form-check-label" for="inlineRadio3">KDITAP</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input me-2" id="inlineRadio4" type="radio" name="senderid" value="KEDTAP">
-                                    <label class="form-check-label" for="inlineRadio4">KEDTAP</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input me-2" id="inlineRadio5" type="radio" name="senderid" value="KTDTAP">
-                                    <label class="form-check-label" for="inlineRadio5">KTDTAP</label>
+                                    <input class="form-check-input me-2" id="inlineRadio1" type="radio" name="senderid" value="#" checked="">
+                                    <label class="form-check-label" for="inlineRadio1">#</label>
                                 </div>
                             </div>
                         </div>

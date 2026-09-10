@@ -57,6 +57,20 @@ class StatisticsController extends Controller
         return view('statistics::index',compact('type','data'));
     }
    
+    public function webinar()
+    {
+        $type = 'webinar';
+        $data = webinardashboardData(4);
+        return view('statistics::index', compact('type', 'data'));
+    }
+
+    public function workshop()
+    {
+        $type = 'workshop';
+        $data = webinardashboardData(5);
+        return view('statistics::index', compact('type', 'data'));
+    }
+    
     public function staffStatistics(Request $request){
         $fromDate = date('Y-m-d');
         $toDate = date('Y-m-d');

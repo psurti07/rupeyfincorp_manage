@@ -5,6 +5,6 @@
     <p>In case you've any queries/doubts, please write to us at hr@rupeyfincorp.com</p>
     <p>
         Thanks & Regards,<br />
-        RupeyFincorp
+        Rupeyfincorp
     </p>
 @endsection

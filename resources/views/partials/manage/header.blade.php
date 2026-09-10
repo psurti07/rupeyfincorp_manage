@@ -3,7 +3,7 @@
         <div class="header-logo-wrapper col-auto p-0">
             <div class="logo-wrapper">
                 <a href="{{ route('manage.dashboard')}}">
-                    <img class="img-fluid" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ env('APP_NAME') }}" width="150">
+                    <img class="img-fluid" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ config('constant.APP_NAME') }}" width="220">
                 </a>
             </div>
             <div class="toggle-sidebar">

@@ -24,6 +24,9 @@ Route::group([
     Route::post('/site-settings/loan-update-key', [SiteOptionsController::class,'loanUpdateKey'])->name('sitesettings.loan-update-key');
     Route::post('/site-settings/loan-update-event', [SiteOptionsController::class,'loanUpdateEvent'])->name('sitesettings.loan-update-event');
     
+    Route::post('/site-settings/webinar-update-key', [SiteOptionsController::class,'webinarUpdateKey'])->name('sitesettings.webinar-update-key');
+    Route::post('/site-settings/webinar-update-event', [SiteOptionsController::class,'webinarUpdateEvent'])->name('sitesettings.webinar-update-event');
+
     Route::get('/whatsapp-settings',[SiteOptionsController::class,'whatsappSettings'])->name('whatsapp.settings');
     Route::post('/whatsapp-settings-update',[SiteOptionsController::class,'whatsappSettingsUpdate'])->name('whatsapp.settings.update');
     

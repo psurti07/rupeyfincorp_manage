@@ -1,0 +1,11 @@
+{
+    "name": "Webinar",
+    "alias": "webinar",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Webinar\\App\\Providers\\WebinarServiceProvider"
+    ],
+    "files": []
+}

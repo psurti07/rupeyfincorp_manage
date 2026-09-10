@@ -230,6 +230,13 @@ use Modules\ApplyLinks\App\Models\ApplyLink;
         }
     }
 
+     if(!function_exists('getWebinarUserData')){
+        function getWebinarUserData($userId){
+            $table = 'App\Models\WebinarRegistration';
+            return $table::where('id',$userId)->first();
+        }
+    }
+
     /* user payout documents */
     if(!function_exists('userPayoutDoc')){
         function userPayoutDoc($userId){

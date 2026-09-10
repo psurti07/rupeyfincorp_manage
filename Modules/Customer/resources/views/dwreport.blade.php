@@ -428,7 +428,7 @@
                                                                                                 color: #000f26;
                                                                                                 font-size: 12px;
                                                                                                 "> 
-                                                                                                {{ date('Y')}} &copy; {{ env('COMPANY_NAME') }}
+                                                                                                {{ date('Y')}} &copy; {{ config('constant.COMPANY_NAME') }}
                                                                                             </p>
                                                                                         </td>
                                                                                     </tr>

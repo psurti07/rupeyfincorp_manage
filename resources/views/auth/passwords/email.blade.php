@@ -8,7 +8,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-7 col-lg-5">
                     <div class="login-page-logo">
-                        <img class="img-fluid dark-theme-img" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ env('APP_NAME') }}">
+                        <img class="img-fluid dark-theme-img" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ config('constant.APP_NAME') }}">
                     </div>
                     <div class="reset-page-wrapper text-center">
                         <form method="post" class="row resetpasswordform reset-password-form r-10" action="{{ route('customer.password.mobile') }}">

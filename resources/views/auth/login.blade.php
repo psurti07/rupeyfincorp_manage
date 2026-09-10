@@ -24,7 +24,7 @@
                                     <img class="img-fluid" src="{{ asset('assets/images/logo/logo-w.png') }}" alt="logo-image">
                                     <!-- Title -->
                                     <h2 class="s-42 w-700">Welcome</h2>
-                                    <h2 class="s-42 w-700">back to {{ env('APP_NAME') }}</h2>
+                                    <h2 class="s-42 w-700">back to {{ config('constant.APP_NAME') }}</h2>
                                     <!-- Text -->
                                     <p class="p-md mt-25">Integer congue sagittis and velna augue egestas magna
                                         suscipit purus aliquam
@@ -32,7 +32,7 @@
                                     <br/><br/><br/><br/>
                                     <!-- Copyright -->
                                     <div class="register-page-copyright">
-                                        <p class="p-sm">{{ date('Y') }} &copy; {{ env('COMPANY_NAME') }}. <span>All Rights Reserved.</span></p>
+                                        <p class="p-sm">{{ date('Y') }} &copy; {{ config('constant.COMPANY_NAME') }}. <span>All Rights Reserved.</span></p>
                                     </div>
                                 </div>
                             </div>	<!-- END LOGIN PAGE TEXT -->

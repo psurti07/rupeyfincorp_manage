@@ -54,8 +54,60 @@ class DashboardController extends Controller
         ->orderByRaw('YEAR(update_date) DESC, MONTH(update_date) DESC, DAY(update_date) DESC')
         ->limit(15)
         ->get()->toArray());
+
+        $webinarCustomers = array_reverse(
+            DB::table('webinar_order as wo')
+                ->join('webinar_event as we', 'wo.webinar_id', '=', 'we.id')
+                ->selectRaw("YEAR(wo.rec_date) as recyear, MONTH(wo.rec_date) as recmonth, DAY(wo.rec_date) as recday, COUNT(wo.id) as totaluser ")
+                ->where('wo.isUser', 2)
+                ->where('wo.isDelete', 0)
+                ->where('we.program_type', 0)
+                ->groupByRaw('YEAR(wo.rec_date), MONTH(wo.rec_date), DAY(wo.rec_date)')
+                ->orderByRaw('YEAR(wo.rec_date) DESC, MONTH(wo.rec_date) DESC, DAY(wo.rec_date) DESC')
+                ->limit(15)
+                ->get()
+                ->toArray());
+
+        $webinarLeads = array_reverse(
+           DB::table('webinar_order as wo')
+                ->join('webinar_event as we', 'wo.webinar_id', '=', 'we.id')
+                ->selectRaw("YEAR(wo.rec_date) as recyear, MONTH(wo.rec_date) as recmonth, DAY(wo.rec_date) as recday, COUNT(wo.id) as totaluser ")
+                ->where('wo.isUser', 1)
+                ->where('wo.isDelete', 0)
+                ->where('we.program_type', 0)
+                ->groupByRaw('YEAR(wo.rec_date), MONTH(wo.rec_date), DAY(wo.rec_date)')
+                ->orderByRaw('YEAR(wo.rec_date) DESC, MONTH(wo.rec_date) DESC, DAY(wo.rec_date) DESC')
+                ->limit(15)
+                ->get()
+                ->toArray());
+
+        $workshopCustomers = array_reverse(
+            DB::table('webinar_order as wo')
+                ->join('webinar_event as we', 'wo.webinar_id', '=', 'we.id')
+                ->selectRaw("YEAR(wo.rec_date) as recyear, MONTH(wo.rec_date) as recmonth, DAY(wo.rec_date) as recday, COUNT(wo.id) as totaluser ")
+                ->where('wo.isUser', 2)
+                ->where('wo.isDelete', 0)
+                ->where('we.program_type', 1)
+                ->groupByRaw('YEAR(wo.rec_date), MONTH(wo.rec_date), DAY(wo.rec_date)')
+                ->orderByRaw('YEAR(wo.rec_date) DESC, MONTH(wo.rec_date) DESC, DAY(wo.rec_date) DESC')
+                ->limit(15)
+                ->get()
+                ->toArray());
         
-        return view('dashboard::index',compact('saCustomers','saLeads','laCustomers','laLeads'));
+        $workshopLeads = array_reverse(
+            DB::table('webinar_order as wo')
+                ->join('webinar_event as we', 'wo.webinar_id', '=', 'we.id')
+                ->selectRaw("YEAR(wo.rec_date) as recyear, MONTH(wo.rec_date) as recmonth, DAY(wo.rec_date) as recday, COUNT(wo.id) as totaluser ")
+                ->where('wo.isUser', 1)
+                ->where('wo.isDelete', 0)
+                ->where('we.program_type', 1)
+                ->groupByRaw('YEAR(wo.rec_date), MONTH(wo.rec_date), DAY(wo.rec_date)')
+                ->orderByRaw('YEAR(wo.rec_date) DESC, MONTH(wo.rec_date) DESC, DAY(wo.rec_date) DESC')
+                ->limit(15)
+                ->get()
+                ->toArray());
+        
+        return view('dashboard::index',compact('saCustomers','saLeads','laCustomers','laLeads','webinarCustomers','webinarLeads','workshopCustomers','workshopLeads'));
     }
 
     public function logout(){

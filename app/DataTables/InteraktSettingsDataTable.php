@@ -25,7 +25,7 @@ class InteraktSettingsDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addIndexColumn()
             ->addColumn('product', function($row){
-                return (($row->product == 'LA') ? 'Loan Agent' : 'Self Apply');
+                return (($row->product == 'LA') ? 'Loan Agent' : (($row->product == 'WEBINAR') ? 'Webinar' : 'Self Apply'));
             })
             ->addColumn('action', function($row){
                 return '

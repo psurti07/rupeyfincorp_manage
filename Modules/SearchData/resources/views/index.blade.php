@@ -43,17 +43,31 @@
                                                             Self Apply
                                                         </label>
                                                     </div>
-                                                    <div class="form-check">
+                                                    {{-- <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="module" id="loanAgent" value="2">
                                                         <label class="form-check-label" for="loanAgent">
                                                             Loan Agent
                                                         </label>
                                                     </div>
+                                                    @if(false)
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="module" id="webinar" value="4">
+                                                        <label class="form-check-label" for="webinar">
+                                                            Webinar
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="module" id="workshop" value="5">
+                                                        <label class="form-check-label" for="workshop">
+                                                            Workshop
+                                                        </label>
+                                                    </div>
+                                                    @endif --}}
                                                 </div>
                                                 <div class="col-12 mt-3">
                                                     <div class="form-group">
                                                         <label for="mobile_no">Mobile No<span class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" name="mobile_no" id="mobile_no" placeholder="Mobile No" maxlength="10" minlength="10">
+                                                        <input type="text" class="form-control numeric-input" name="mobile_no" id="mobile_no" placeholder="Mobile No" maxlength="10" minlength="10">
                                                         @component('components.ajax-error', ['field' => 'mobile_no'])@endcomponent
                                                     </div>
                                                 </div>

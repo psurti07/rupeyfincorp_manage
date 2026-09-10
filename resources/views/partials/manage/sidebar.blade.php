@@ -22,16 +22,16 @@
     <div>
         <div class="logo-wrapper">
             <a href="{{ route('manage.dashboard') }}">
-                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ env('APP_NAME') }}" width="160">
-                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo-w.png') }}" alt="{{ env('APP_NAME') }}" width="160">
+                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo.png') }}" alt="{{ config('constant.APP_NAME') }}" width="160">
+                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/logo-w.png') }}" alt="{{ config('constant.APP_NAME') }}" width="160">
             </a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
         </div>
         <div class="logo-icon-wrapper">
             <a href="{{ route('manage.dashboard') }}">
-                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/favicon-32x32.png') }}" alt="{{ env('APP_NAME') }}">
-                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/favicon-32x32-w.png') }}" alt="{{ env('APP_NAME') }}">
+                <img class="img-fluid for-light" src="{{ asset('assets/images/logo/favicon-32x32.png') }}" alt="{{ config('constant.APP_NAME') }}">
+                <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/favicon-32x32-w.png') }}" alt="{{ config('constant.APP_NAME') }}">
             </a>
         </div>
         <nav class="sidebar-main">
@@ -40,8 +40,8 @@
                 <ul class="sidebar-links" id="simple-bar">
                     <li class="back-btn">
                         <a href="{{ route('manage.dashboard') }}">
-                            <img class="img-fluid for-light" src="{{ asset('assets/images/logo/favicon-32x32.png') }}" alt="{{ env('APP_NAME') }}">
-                            <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/favicon-32x32-w.png') }}" alt="{{ env('APP_NAME') }}">
+                            <img class="img-fluid for-light" src="{{ asset('assets/images/logo/favicon-32x32.png') }}" alt="{{ config('constant.APP_NAME') }}">
+                            <img class="img-fluid for-dark" src="{{ asset('assets/images/logo/favicon-32x32-w.png') }}" alt="{{ config('constant.APP_NAME') }}">
                         </a>
                         <div class="mobile-back text-end">
                             <span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
@@ -98,7 +98,7 @@
                                 </ul>
                             </li>
                         @endif
-                        @if(in_array(Auth::user()->role, [0,1,3,6,2]))
+                        {{-- @if(in_array(Auth::user()->role, [0,1,3,6,2]))
                             <li class="sidebar-list">
                                 <i class="fa fa-thumb-tack"></i>
                                 <a class="sidebar-link sidebar-title" href="javascript:;">
@@ -111,7 +111,25 @@
                                     <li><a href="{{ route('manage.statistics.loan.agent.staff.stats') }}">Staff Statistics</a></li>
                                 </ul>
                             </li>
+                        @endif --}}
+                        {{-- @if(in_array(Auth::user()->role, [0,1,3,6,7]))
+                        @if(false)
+                        <li class="sidebar-list">
+                            <i class="fa fa-thumb-tack"></i>
+                            <a class="sidebar-link sidebar-title  link-nav" href="{{ route('manage.statistics.webinar') }}">
+                                <i data-feather="bar-chart-2"></i>
+                                <span class="">Webinar</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-list">
+                            <i class="fa fa-thumb-tack"></i>
+                            <a class="sidebar-link sidebar-title  link-nav" href="{{ route('manage.statistics.workshop') }}">
+                                <i data-feather="bar-chart-2"></i>
+                                <span class="">Workshop</span>
+                            </a>
+                        </li>
                         @endif
+                        @endif --}}
                         @if(!in_array(Auth::user()->role, [5,2,7]))
                             <li class="sidebar-list">
                                 <i class="fa fa-thumb-tack"></i>
@@ -180,7 +198,7 @@
                             </li>
                         @endif
                     @endif
-                    @if(!in_array(Auth::user()->role, [4]))
+                    {{-- @if(!in_array(Auth::user()->role, [4]))
                         @if(in_array(Auth::user()->role, [0,1,3,6,2]))
                             <li class="sidebar-main-title">
                                 <div>
@@ -225,7 +243,69 @@
                                 </ul>
                             </li>
                         @endif
-                    @endif
+                    @endif --}}
+                    {{-- @if(false)
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6 class="">PROGRAM DETAIL</h6>
+                        </div>
+                    </li>
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.webinar.event.details') }}">
+                            <i data-feather="list"></i>
+                            <span class="">Program List</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:;">
+                            <i data-feather="list"></i>
+                            <span class="">Webinar Users</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('manage.webinar.leads') }}">Leads</a></li>
+                            <li><a href="{{ route('manage.webinar') }}">Customers</a></li>
+                            <li><a href="{{ route('manage.webinar.attend') }}">Attend Webinar</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:;">
+                            <i data-feather="list"></i>
+                            <span class="">Workshop Users</span>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('manage.workshop.leads') }}">Leads</a></li>
+                            <li><a href="{{ route('manage.workshop.customer') }}">Customers</a></li>
+                            <!-- <li><a href="">Workshop Customers List</a></li> -->
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title link-nav" href="{{ route('manage.webinar.onboard.detail') }}">
+                            <i data-feather="list"></i>
+                            <span class="">Onboard List</span>
+                        </a>
+                    </li>
+
+               
+                    <li class="sidebar-main-title">
+                        <div>
+                            <h6>Schedule Slots</h6>
+                        </div>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav active" href="{{ route('manage.schedule-slot') }}">
+                            <i data-feather="list"></i>
+                            <span class="">Schedule Slots</span>
+                            <div class="according-menu"><i class="fa fa-angle-right"></i></div>
+                        </a>
+                    </li>
+
+                    @endif --}}
                     @if(!in_array(Auth::user()->role, [4,7,2,5]))
                         <li class="sidebar-main-title">
                             <div>
@@ -296,7 +376,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'leads','acc_type'=>1]) }}">SelfApply Leads</a></li>
-                                <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'leads','acc_type'=>2]) }}">LoanAgent Leads</a></li>
+                                {{-- <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'leads','acc_type'=>2]) }}">LoanAgent Leads</a></li> --}}
                             </ul>
                         </li>
                         <li class="sidebar-list">
@@ -307,7 +387,7 @@
                             </a>
                             <ul class="sidebar-submenu">
                                 <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'customer','acc_type'=>1]) }}">SelfApply Customer</a></li>
-                                <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'customer','acc_type'=>2]) }}">LoanAgent Customer</a></li>
+                                {{-- <li><a href="{{ route('manage.reports.customers.leads.data',['type'=>'customer','acc_type'=>2]) }}">LoanAgent Customer</a></li> --}}
                             </ul>
                         </li>
                     @endif
@@ -513,7 +593,7 @@
                                 </a>
                                 <ul class="sidebar-submenu">
                                     <li><a href="{{ route('manage.dnd.list',['type'=>'selfapply']) }}">Self Apply DND List</a></li>
-                                    <li><a href="{{ route('manage.dnd.list',['type'=>'loanagent']) }}">Loan Agent DND List</a></li>
+                                    {{-- <li><a href="{{ route('manage.dnd.list',['type'=>'loanagent']) }}">Loan Agent DND List</a></li> --}}
                                 </ul>
                             </li>
                         @endif

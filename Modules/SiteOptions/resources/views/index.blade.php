@@ -100,7 +100,7 @@
 
 
 
-<div class="container-fluid">
+{{-- <div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <!-- Parent Card -->
@@ -176,6 +176,82 @@
     </div>
 </div>
 
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <!-- Parent Card -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title ">Webinar Facebook Settings</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                             <div class="border custom-rounded">
+                                <div class="card-header">
+                                    <h6 class="card-title">Key Settings</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="{{ route('manage.sitesettings.webinar-update-key') }}" class="needs-validation theme-form" novalidate="">
+                                        @csrf
+                                        <div class="row g-3">
+                                            <div class="form-group">
+                                                <label for="webinarfbdomainid">Facebook Domain Verification ID</label>
+                                                <input type="text" class="form-control" name="webinarfbdomainid" id="webinarfbdomainid" placeholder="Facebook Domain Verification ID" value="{{ $webinarfbDomain }}">
+                                                @component('components.error', ['field' => 'webinarfbdomainid'])@endcomponent
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="webinarfbpixelkey">Facebook Pixel Key</label>
+                                                <input type="text" class="form-control" name="webinarfbpixelkey" id="webinarfbpixelkey" placeholder="Facebook Pixel Key" value="{{ $webinarfbPixelKey }}">
+                                                @component('components.error', ['field' => 'webinarfbpixelkey'])@endcomponent
+                                            </div>
+                                            <div class="col-12 mt-3">
+                                                <button type="submit" class="btn btn-outline-primary">Update Key Settings</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                             <div class="border custom-rounded">
+                                <div class="card-header">
+                                    <h6 class="card-title">Event Settings</h6>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="{{ route('manage.sitesettings.webinar-update-event') }}" class="needs-validation theme-form" novalidate="">
+                                        @csrf
+                                        <div class="row g-3">
+                                            <div class="form-group">
+                                                <label for="webinarfbaccesstoken">Facebook Access Token</label>
+                                                <input type="text" class="form-control" name="webinarfbaccesstoken" id="webinarfbaccesstoken" placeholder="Facebook Access Token" value="{{ $webinarfbAccessToken }}">
+                                                @component('components.error', ['field' => 'webinarfbaccesstoken'])@endcomponent
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="webinarfbeventname">Facebook Event Name</label>
+                                                <input type="text" class="form-control" name="webinarfbeventname" id="webinarfbeventname" placeholder="Facebook Event Name" value="{{ $webinarfbEventName }}">
+                                                @component('components.error', ['field' => 'webinarfbeventname'])@endcomponent
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="webinarfbeventid">Facebook Event ID</label>
+                                                <input type="text" class="form-control" name="webinarfbeventid" id="webinarfbeventid" placeholder="Facebook Event ID" value="{{ $webinarfbEventId }}">
+                                                @component('components.error', ['field' => 'webinarfbeventid'])@endcomponent
+                                            </div>
+                                            <div class="col-12 mt-3">
+                                                <button type="submit" class="btn btn-outline-primary">Update Event Settings</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
 @endsection
 
 @push('script-src')

@@ -1,1 +1,1 @@
-# rupeyfincorp_manage
+# manage_rupeyfincorp

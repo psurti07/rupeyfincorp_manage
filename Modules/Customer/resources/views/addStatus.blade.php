@@ -113,7 +113,7 @@
 $(document).ready(function(){
     $("#subject").on('change', function(){
         let titleVal = $(this).val();
-        let staff = `{{$staff ?? '9429214352'}}`;
+        let staff = `{{$staff ?? '{{9429214352}}'}}`;
         if(titleVal){
             $.ajax({
                 url: `{{ route('manage.loanagent.application.status.title') }}`,

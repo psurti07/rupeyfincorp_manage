@@ -36,5 +36,7 @@
     "SMS": true,
     "AdsContent": true,
     "NewsLetter": true,
-    "Statistics": true
+    "Statistics": true,
+    "Webinar": true,
+    "ScheduleSlot": true
 }

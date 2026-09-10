@@ -1,0 +1,11 @@
+{
+    "name": "ScheduleSlot",
+    "alias": "scheduleslot",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ScheduleSlot\\App\\Providers\\ScheduleSlotServiceProvider"
+    ],
+    "files": []
+}

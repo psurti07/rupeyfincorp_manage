@@ -87,6 +87,12 @@ class SiteOptionsController extends Controller
         $loanfbevntnm = $this->searchRecords('la_facebookeventname');
         $loanfbevntid = $this->searchRecords('la_facebookeventid');
         
+        $webinarfbdomain = $this->searchRecords('webinar_facebookdomain');
+        $webinarfbpixel = $this->searchRecords('webinar_facebookpixelkey');
+        $webinarfbaccesstoken = $this->searchRecords('webinar_facebookaccesstoken');
+        $webinarfbevntnm = $this->searchRecords('webinar_facebookeventname');
+        $webinarfbevntid = $this->searchRecords('webinar_facebookeventid');
+
         return view('siteoptions::index')->with([
             'fbDomain' => $fbdomain,
             'fbPixelKey' => $fbpixel,
@@ -97,7 +103,12 @@ class SiteOptionsController extends Controller
             'loanfbPixelKey' => $loanfbpixel,
             'loanfbAccessToken' => $loanfbaccesstoken,
             'loanfbEventName' => $loanfbevntnm,
-            'loanfbEventId' => $loanfbevntid
+            'loanfbEventId' => $loanfbevntid,
+            'webinarfbDomain' => $webinarfbdomain,
+            'webinarfbPixelKey' => $webinarfbpixel,
+            'webinarfbAccessToken' => $webinarfbaccesstoken,
+            'webinarfbEventName' => $webinarfbevntnm,
+            'webinarfbEventId' => $webinarfbevntid
         ]);
     }
 
@@ -196,6 +207,51 @@ class SiteOptionsController extends Controller
         }
     }
 
+    public function webinarUpdateKey(Request $request){
+        $input = $request->all();
+        $request->validate([
+            'webinarfbdomainid' => 'required',
+            'webinarfbpixelkey' => 'required'
+        ],[
+            'webinarfbdomainid.required' => 'Facebook domain id field is required',
+            'webinarfbpixelkey.required' => 'Facebook pixel key is required'
+        ]);
+        $result1 = InfoPages::where('slug','webinar_facebookdomain')->update(['content'=>$input['webinarfbdomainid']]);
+        $result2 = InfoPages::where('slug','webinar_facebookpixelkey')->update(['content'=>$input['webinarfbpixelkey']]);
+        $message = 'Webinar key changed successfully';
+        if($result1 || $result2){
+            Session::flash('success', $message);
+            return redirect()->route('manage.site-settings');
+        } else {
+            Session::flash('success', 'Updated');
+            return redirect()->route('manage.site-settings');
+        }
+    }
+
+    public function webinarUpdateEvent(Request $request){
+        $input = $request->all();
+        $request->validate([
+            'webinarfbaccesstoken' => 'required',
+            'webinarfbeventname' => 'required',
+            'webinarfbeventid' => 'required'
+        ],[
+            'webinarfbaccesstoken.required' => 'Facebook access token field is required',
+            'webinarfbeventname.required' => 'Facebook event name field is required',
+            'webinarfbeventid.required' => 'Facebook event id field is required',
+        ]);
+        $result1 = InfoPages::where('slug','webinar_facebookaccesstoken')->update(['content'=>$input['webinarfbaccesstoken']]);
+        $result2 = InfoPages::where('slug','webinar_facebookeventname')->update(['content'=>$input['webinarfbeventname']]);
+        $result3 = InfoPages::where('slug','webinar_facebookeventid')->update(['content'=>$input['webinarfbeventid']]);
+        $message = 'Webinar Events changed successfully';
+        if($result1 || $result2 || $result3){
+            Session::flash('success', $message);
+            return redirect()->route('manage.site-settings');
+        } else {
+            Session::flash('success', 'Updated');
+            return redirect()->route('manage.site-settings');
+        }
+    }
+
     public function whatsappSettings(){
         $options = InfoPages::whereIn('slug', ['sa-wp-remarketing','sa-wp-getoffer','sa-wp-payment-success','sa-wp-username-password','la-wp-remarketing','la-wp-getoffer','la-wp-payment-success','la-wp-username-password'])->get();
         return view('siteoptions::whatsappSettings',compact('options'));
@@ -233,7 +289,7 @@ class SiteOptionsController extends Controller
     }
     
     public function smsSettings(){
-        $options = InfoPages::whereIn('slug', ['sa-senderid', 'sa-senderid-otp', 'la-senderid', 'la-senderid-otp', 'common-senderid', 'lat-senderid', 'lat-senderid-otp'])->get();
+        $options = InfoPages::whereIn('slug', ['sa-senderid', 'sa-senderid-otp', 'la-senderid', 'la-senderid-otp', 'common-senderid', 'lat-senderid', 'lat-senderid-otp','webinar-senderid', 'webinar-senderid-otp'])->get();
         return view('siteoptions::smsSettings',compact('options'));
     }
     
@@ -247,7 +303,9 @@ class SiteOptionsController extends Controller
                 'sa-senderid-otp.required' => 'Self Apply OTP SenderId field is required',
                 'la-senderid.required' => 'Loan Agent SenderId field is required',
                 'la-senderid-otp.required' => 'Loan Agent OTP SenderId field is required',
-                'common-senderid.required' => 'Common SenderId field is required'
+                'common-senderid.required' => 'Common SenderId field is required',
+                'webinar-senderid.required' => 'Webinar SenderId field is required',
+                'webinar-senderid-otp.required' => 'Webinar OTP SenderId field is required',
             ]);
             $field = $inputs['slug'];
             $message = getMessageSettings($inputs['slug']);

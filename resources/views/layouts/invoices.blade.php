@@ -4,7 +4,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta charset="utf-8">
     <meta name="robots" content="noindex,nofollow" />
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ config('constant.APP_NAME') }}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <style type="text/css">
         #lineItem tr {
@@ -21,9 +21,9 @@
             <tr>
                 <td style="vertical-align:bottom;word-wrap:break-word;float:left;width:50%;text-align:left;">
                     <b style="font-size:14pt;">{{ env('WEBSITE') }}</b><br>
-                    <b>{{ env('COMPANY_NAME') }}</b><br/>
+                    <b>{{ config('constant.COMPANY_NAME') }}</b><br/>
                     <div>
-                        <span style="white-space: pre-wrap;" id="tmp_org_address">{{ env('COMPANY_ADDRESS') }} <br/>Mo.: {{ env('COMPANY_MOBILE') }}<br/>Email: {{ env('INFO_EMAIL') }}<br/>CIN No.: {{ env('CIN_NO') }}<br/>GST No.: {{ env('GST_NO') }}</span>
+                        <span style="white-space: pre-wrap;" id="tmp_org_address">{{ config('constant.COMPANY_ADDRESS') }} <br/>Mo.: {{ config('constant.COMPANY_MOBILE') }}<br/>Email: {{ env('INFO_EMAIL') }}<br/>CIN No.: {{ config('constant.CIN_NO') }}<br/>GST No.: {{ config('constant.GST_NO') }}</span>
                     </div>
                 </td>
                 <td style="vertical-align:top;word-wrap:break-word;float:right;text-align:right;width:50%;">
@@ -166,7 +166,7 @@
                 </td>
 
                 <td style="vertical-align:bottom;word-wrap:break-word;float:right;width:50%;text-align:right;">
-                    <p style="margin-top:20px;white-space: pre-wrap;word-wrap: break-word;font-size: 8pt;"><em>Authorized person</em><br/><span style="margin-top:20px;margin-bottom:7px;"><strong> {{ env('COMPANY_NAME') }} </strong></span></p>
+                    <p style="margin-top:20px;white-space: pre-wrap;word-wrap: break-word;font-size: 8pt;"><em>Authorized person</em><br/><span style="margin-top:20px;margin-bottom:7px;"><strong> {{ config('constant.COMPANY_NAME') }} </strong></span></p>
                 </td>
             </tr>
             </tbody>
