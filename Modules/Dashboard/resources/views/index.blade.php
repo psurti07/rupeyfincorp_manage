@@ -19,7 +19,7 @@
     <div class="container-fluid">
         @if(Auth::user()->role != 4)
         <div class="row widget-grid">
-            <div class="col-sm-12 col-xl-6 box-col-6">
+            {{-- <div class="col-sm-12 col-xl-6 box-col-6">
                 <div class="card">
                     <div class="card-header text-center">
                         <h5>SelfApply Customers</h5>
@@ -38,8 +38,8 @@
                         <div id="sa-leads"></div>
                     </div>
                 </div>
-            </div>
-            {{-- <div class="col-sm-12 col-xl-6 box-col-6">
+            </div> --}}
+            <div class="col-sm-12 col-xl-6 box-col-6">
                 <div class="card">
                     <div class="card-header text-center">
                         <h5>Loan Agent Customers</h5>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-xl-6 box-col-6">
+            {{-- <div class="col-sm-12 col-xl-6 box-col-6">
                 <div class="card">
                     <div class="card-header text-center">
                         <h5>Webinar Customers</h5>

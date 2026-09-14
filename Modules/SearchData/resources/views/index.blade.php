@@ -37,19 +37,19 @@
                                         <div class="card-body p-0">
                                             <div class="row g-3">
                                                 <div class="form-group">
-                                                    <div class="form-check">
+                                                    {{-- <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="module" id="selfApply" value="1" checked>
                                                         <label class="form-check-label" for="selfApply">
                                                             Self Apply
                                                         </label>
-                                                    </div>
-                                                    {{-- <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="module" id="loanAgent" value="2">
+                                                    </div> --}}
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="module" id="loanAgent" value="2" checked>
                                                         <label class="form-check-label" for="loanAgent">
                                                             Loan Agent
                                                         </label>
                                                     </div>
-                                                    @if(false)
+                                                    {{-- @if(false)
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="module" id="webinar" value="4">
                                                         <label class="form-check-label" for="webinar">

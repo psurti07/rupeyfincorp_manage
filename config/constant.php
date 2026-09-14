@@ -2,7 +2,7 @@
 
 return [
     'APP_NAME'              =>env('APP_NAME'),
-    'COMPANY_CODE'          => 'WSMDRA123',
+    'COMPANY_CODE'          => '#',
     'PRODUCT_CODE_SELFAPPLY'  => 'SELFAPPLY',
     'PRODUCT_CODE_LOANAGENT'  => 'HIRELOAN',
     

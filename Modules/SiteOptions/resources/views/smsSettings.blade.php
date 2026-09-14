@@ -30,7 +30,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <form method="post" action="{{ route('manage.sms.settings.update') }}" class="sa-sms-senderid-settings" id="sa-sms-senderid-settings">
+                            {{-- <form method="post" action="{{ route('manage.sms.settings.update') }}" class="sa-sms-senderid-settings" id="sa-sms-senderid-settings">
                                 <input type="hidden" name="slug" value="sa-senderid">
                                 <div class="form-group">
                                     <label for="sa-senderid">Self Apply Sender ID - Remarketing<span class="text-danger">*</span></label>
@@ -51,7 +51,7 @@
                                     </div>
                                     @component('components.ajax-error',['field'=>'sa-senderid-otp'])@endcomponent
                                 </div>
-                            </form>
+                            </form> --}}
                             <form method="post" action="{{ route('manage.sms.settings.update') }}" class="la-sms-senderid-settings" id="la-sms-senderid-settings">
                                 <input type="hidden" name="slug" value="la-senderid">
                                 <div class="form-group">
@@ -75,7 +75,7 @@
                                 </div>
                             </form>
                             
-                            <form method="post" action="{{ route('manage.sms.settings.update') }}" class="webinar-sms-senderid-settings" id="webinar-sms-senderid-settings">
+                            {{-- <form method="post" action="{{ route('manage.sms.settings.update') }}" class="webinar-sms-senderid-settings" id="webinar-sms-senderid-settings">
                                 <input type="hidden" name="slug" value="webinar-senderid">
                                 <div class="form-group">
                                     <label for="webinar-senderid">webinar Sender ID<span class="text-danger">*</span></label>
@@ -97,7 +97,7 @@
                                     </div>
                                     @component('components.ajax-error',['field'=>'webinar-senderid-otp'])@endcomponent
                                 </div>
-                            </form>
+                            </form> --}}
                             
                             <form method="post" action="{{ route('manage.sms.settings.update') }}" class="common-sms-senderid-settings" id="common-sms-senderid-settings">
                                 <input type="hidden" name="slug" value="common-senderid">

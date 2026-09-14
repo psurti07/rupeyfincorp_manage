@@ -114,7 +114,7 @@
         </div> -->
         <hr />
     </div>
-    <div class="row mt-3">
+    {{-- <div class="row mt-3">
         <h4 class="text-center mb-5">Todays Self Apply Payment Gateway Statistics</h4>
         <div class="col-lg-4 col-md-4 col-12">
             <a href="javascript:;" data-payment-gateway="zaakpay-log" data-entry-for="11" data-offer-name="Self Apply" onclick="paymentLogRedirect(this)">
@@ -207,7 +207,7 @@
                 </div>
             </a>
         </div> -->
-    </div>
+    </div> --}}
 </div>
 @endsection
 
